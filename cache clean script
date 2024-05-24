@@ -1,0 +1,20 @@
+#!/bin/bash
+
+LOG="/home/dev007/cron.log"
+SCRIPT_NAME="CLEAN"
+
+sudo apt clean >> $LOG
+if [ $? -eq 0 ]
+then 
+    echo "$SCRIPT_NAME:Cache Clean Successful" >> $LOG
+else
+    echo "$SCRIPT_NAME:Failed to Clean the Cache" >> $LOG
+fi
+
+sudo apt autoremove >> $LOG
+if [ $? -eq 0 ]
+then 
+    echo "$SCRIPT_NAME: Removed Unneccessary Packages" >> $LOG
+else
+    echo "$SCRIPT_NAME: Failed to remove unneccessary packages." >> $LOG
+fi
